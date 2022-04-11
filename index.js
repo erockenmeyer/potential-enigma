@@ -154,12 +154,15 @@ function writeToFile(fileName, data) {
 // function to initialize app
 function init() {
     return inquirer.prompt(questions)
+    // sends info to generate the markdown
     .then(projectData => {
         return generateMarkdown(projectData)
     })
+    // sends markdown to create a file
     .then(readMeData => {
         return writeToFile('./dist/README.md', readMeData)
     })
+    // states completion
     .then(writeFileResponse => {
         console.log(writeFileResponse);
     })
